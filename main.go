@@ -1,27 +1,19 @@
 package main
 
 import (
-	"app/calc"
+	"app/repl"
 	"fmt"
+	"os"
+	"os/user"
 )
-
-/*
-import (
-	"app/p1"
-	"app/p2"
-)
-
-func main(){
-	p1.Func1()
-	p2.Func2()
-}
-*/
 
 func main() {
-	p := calc.Calc{A:3,B:2}
-	var m calc.MyInt = 1
+	user, err := user.Current()
+	if err != nil {
+		panic(err)
+	}
 
-	fmt.Println(p.Add())
-	fmt.Println(m.Add(2))
+	fmt.Printf("Hello %s! This is the Monkey programming language\n", user.Username)
+	fmt.Printf("Feel free to type in commands\n")
+	repl.Start(os.Stdin, os.Stdout)
 }
-
