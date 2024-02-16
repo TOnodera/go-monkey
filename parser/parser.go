@@ -254,7 +254,7 @@ func (p *Parser) parseIfExpression() ast.Expression {
 	if p.peekTokenIs(token.ELSE) {
 		p.nextToken()
 
-		if !p.peekTokenIs(token.LBRACE) {
+		if !p.expectPeek(token.LBRACE) {
 			return nil
 		}
 
@@ -272,6 +272,7 @@ func (p *Parser) parseBlockStatement() *ast.BlockStatement {
 
 	for !p.curTokenIs(token.RBRACE) && !p.curTokenIs(token.EOF) {
 		stmt := p.parseStatement()
+		fmt.Printf(p.curToken.Literal)
 		if stmt != nil {
 			block.Statements = append(block.Statements, stmt)
 		}
