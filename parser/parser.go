@@ -274,7 +274,6 @@ func (p *Parser) parseBlockStatement() *ast.BlockStatement {
 
 	for !p.curTokenIs(token.RBRACE) && !p.curTokenIs(token.EOF) {
 		stmt := p.parseStatement()
-		fmt.Printf(p.curToken.Literal)
 		if stmt != nil {
 			block.Statements = append(block.Statements, stmt)
 		}
